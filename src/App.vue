@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <canvas ref="canvasRef" width="800" height="800"></canvas>
+    <canvas ref="canvasRef" width="500" height="500"></canvas>
     <button @click="startAnimation1">Start Animation 1</button>
     <button @click="startAnimation2">Start Animation 2</button>
     <button @click="stopAnimation">Stop Animation</button>
@@ -9,8 +9,8 @@
 
 <script setup lang="ts">
 const fps = 30;
-const witdh=800;
-const height=800;
+const witdh=500;
+const height=500;
 
 
 import { ref } from 'vue';
@@ -26,34 +26,34 @@ const startAnimation1 = async () => {
   
   if (!ctx) return;
   let animationGenerator = animation20241225_1(ctx,witdh, height, fps, 600);
-  while(true) { 
+  const interval = setInterval(() => {
     const f = async () => {
       const n = animationGenerator.next();
-      if(n.done) { animationGenerator = animation20241225_1(ctx, witdh, height, fps, 600);}
+      if(n.done) animationGenerator = animation20241225_1(ctx,witdh, height, fps, 600);
       ctx.putImageData(n.value, 0, 0);
-    };
+    }
     f();
-    if(!isAnimating) break;
-    await new Promise(resolve => setTimeout(resolve, 1000 / fps));
-  }
+    if(!isAnimating) clearInterval(interval);
+  }, 1000 / fps);
 };
 
 const startAnimation2 = async () => {
+  const dur = 3
   if (isAnimating) return; 
   isAnimating = true;
   const ctx = canvasRef.value?.getContext('2d');
   if (!ctx) return;
-  let animationGenerator = animation20241225_2(ctx,witdh, height, fps, 5);
-  while(true){
+  let animationGenerator = animation20241225_2(ctx,witdh, height, fps, dur);
+  const interval = setInterval(() => {
     const f = async () => {
       const n = animationGenerator.next();
-      if(n.done) animationGenerator = animation20241225_1(ctx, witdh, height, fps, 2);
+      if(n.done) animationGenerator = animation20241225_2(ctx,witdh, height, fps, dur);
       ctx.putImageData(n.value, 0, 0);
-    };
+    }
     f();
-    if(!isAnimating) break;
-    await new Promise(resolve => setTimeout(resolve, 1000 / fps));
-  }
+    if(!isAnimating) clearInterval(interval);
+  }, 1000 / fps);
+  
 };
 
 

@@ -32,9 +32,9 @@ export function* animation20241225_1(ctx: CanvasRenderingContext2D, width: numbe
               (t:number) => `rgba(${Math.round(128 - 127 * (j * Math.cos(Math.PI * (3.0 * t - i * normalized_time))))}, ${Math.round(128 + 127 * (j * Math.sin(Math.PI * (3.0 * t + i * normalized_time))))}, 128, 16)`,
               (t:number) => 0.00075+0.0007*Math.sin(Math.PI*2.0*t + Math.PI*Math.sin(80.0*Math.PI*normalized_time))
               );
-
+          
                 
-      }  
+      }
     }
     yield ctx.getImageData(0, 0, width, height);
   }

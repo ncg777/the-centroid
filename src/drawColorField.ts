@@ -10,7 +10,7 @@ export default function drawColorField2D(
             const ynorm = (y / height) * 2.0 - 1.0; // Normalize y to the range [-1,1]
             const c = color(xnorm, ynorm);
             ctx.fillStyle = c;
-            ctx.fillRect(x - 1, y - 1, 3, 3); // Draw a small rectangle to represent the color point
+            ctx.fillRect(x, y, 1, 1);
         }
     }
 }
