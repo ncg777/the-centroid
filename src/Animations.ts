@@ -55,7 +55,7 @@ export function* animation20241225_2(ctx: CanvasRenderingContext2D, width: numbe
               ${Math.round(128 + Math.sin(p * 8.0 * Math.PI) * 127)}, 
               ${Math.round(128 + Math.sin(Math.PI / 4 + p * 4.0 * Math.PI) * 127)}, 
               ${Math.round(128 + Math.cos(p * 2.0 * Math.PI) * 127)}, 
-              ${Math.tanh(6*(0.5-r1))})`;
+              ${0.5*(1+Math.tanh(15*(0.5-r1)))})`;
           },
           width, height);
       
