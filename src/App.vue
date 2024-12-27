@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-const fps = 10;
+const fps = 30;
 const witdh=500;
 const height=500;
 
@@ -31,8 +31,11 @@ const startAnimation1 = async () => {
     const delta = timestamp - lastTimestamp;
 
     if (delta > 1000 / fps) { 
-      const n = animationGenerator.next();
-      if(n.done) animationGenerator = animation20241225_1(ctx, witdh, height, fps, dur);
+      let n = animationGenerator.next();
+      if(n.done) {
+        animationGenerator = animation20241225_1(ctx, witdh, height, fps, dur);
+        n = animationGenerator.next();
+      } 
       ctx.putImageData(n.value, 0, 0);
       lastTimestamp = timestamp;
     }
@@ -43,7 +46,7 @@ const startAnimation1 = async () => {
 
 const startAnimation2 = async () => {
   if (animationFrameId) return;
-  const dur = 3;
+  const dur = 1;
   const ctx = canvasRef.value?.getContext('2d');
   if (!ctx) return;
   let animationGenerator = animation20241225_2(ctx, witdh, height, fps, dur);
@@ -52,8 +55,11 @@ const startAnimation2 = async () => {
     const delta = timestamp - lastTimestamp;
 
     if (delta > 1000 / fps) { 
-      const n = animationGenerator.next();
-      if(n.done) animationGenerator = animation20241225_2(ctx, witdh, height, fps, dur);
+      let n = animationGenerator.next();
+      if(n.done) {
+        animationGenerator = animation20241225_2(ctx, witdh, height, fps, dur);
+        n = animationGenerator.next();
+      } 
       ctx.putImageData(n.value, 0, 0);
       lastTimestamp = timestamp;
     }
