@@ -46,7 +46,6 @@ export function* animation20241225_2(ctx: CanvasRenderingContext2D, width: numbe
   
   for (let k = 0; k < upper; k++) {
       const t = k / upper;
-      ctx.clearRect(0,0,width,height);
       drawColorField2D(ctx, 
           (x: number, y: number) => {
               const b = 5.0;
@@ -74,7 +73,6 @@ export function* animation20241225_3(ctx: CanvasRenderingContext2D, width: numbe
   
   for (let k = 0; k < upper; k++) {
       const t = k / upper;
-      ctx.clearRect(0,0,width,height);
       drawColorField2D(ctx, 
           (x: number, y: number) => {
               const b = 2.0;

@@ -4,6 +4,7 @@ export default function drawColorField2D(
     width: number,
     height: number
 ): void {
+    ctx.reset();
     for (let x = 0; x < width; x++) {
         const xnorm = (x / width) * 2.0 - 1.0; // Normalize x to the range [-1,1]
         for (let y = 0; y < height; y++) {
