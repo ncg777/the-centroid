@@ -17,7 +17,7 @@ import { ref } from 'vue';
 import { animation20241225_1, animation20241225_2 } from './Animations';
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
-let isAnimating = false; // State variable to track animation status
+let isAnimating = false;
 
 const startAnimation1 = async () => {
   if (isAnimating) return; 
@@ -25,13 +25,16 @@ const startAnimation1 = async () => {
   const ctx = canvasRef.value?.getContext('2d');
   
   if (!ctx) return;
-  let animationGenerator = animation20241225_1(ctx,witdh, height, fps, 600); // Specify your animation parameters
+  let animationGenerator = animation20241225_1(ctx,witdh, height, fps, 600);
   while(true) { 
-    const n = animationGenerator.next();
-    if(!isAnimating) break
-    if(n.done) { animationGenerator = animation20241225_1(ctx, witdh, height, fps, 600);}
-    ctx.putImageData(n.value, 0, 0);
-    await new Promise(resolve => setTimeout(resolve, 1000 / fps)); // 30 FPS
+    const f = async () => {
+      const n = animationGenerator.next();
+      if(n.done) { animationGenerator = animation20241225_1(ctx, witdh, height, fps, 600);}
+      ctx.putImageData(n.value, 0, 0);
+    };
+    f();
+    if(!isAnimating) break;
+    await new Promise(resolve => setTimeout(resolve, 1000 / fps));
   }
 };
 
@@ -40,15 +43,17 @@ const startAnimation2 = async () => {
   isAnimating = true;
   const ctx = canvasRef.value?.getContext('2d');
   if (!ctx) return;
-  let animationGenerator = animation20241225_2(ctx,witdh, height, fps, 5); // Specify your animation parameters
-  while(true) { 
-    const n = animationGenerator.next();
+  let animationGenerator = animation20241225_2(ctx,witdh, height, fps, 5);
+  while(true){
+    const f = async () => {
+      const n = animationGenerator.next();
+      if(n.done) animationGenerator = animation20241225_1(ctx, witdh, height, fps, 2);
+      ctx.putImageData(n.value, 0, 0);
+    };
+    f();
     if(!isAnimating) break;
-    if(n.done) animationGenerator = animation20241225_1(ctx, witdh, height, fps, 2);
-    ctx.putImageData(n.value, 0, 0);
-    await new Promise(resolve => setTimeout(resolve, 1000 / fps)); // 30 FPS
+    await new Promise(resolve => setTimeout(resolve, 1000 / fps));
   }
-  isAnimating = false;
 };
 
 
