@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-const fps = 30;
+const fps = 10;
 const witdh=500;
 const height=500;
 
@@ -17,49 +17,56 @@ import { ref } from 'vue';
 import { animation20241225_1, animation20241225_2 } from './Animations';
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
-let isAnimating = false;
+let lastTimestamp = 0;
+let animationFrameId: number | null = null; // To store the animation frame ID
 
 const startAnimation1 = async () => {
-  if (isAnimating) return; 
-  isAnimating = true;
+  if (animationFrameId) return;
+  const dur = 600;
   const ctx = canvasRef.value?.getContext('2d');
-  
   if (!ctx) return;
-  let animationGenerator = animation20241225_1(ctx,witdh, height, fps, 600);
-  const interval = setInterval(() => {
-    const f = async () => {
+  let animationGenerator = animation20241225_1(ctx, witdh, height, fps, dur);
+  const animate = (timestamp: number) => {
+    if (!lastTimestamp) lastTimestamp = timestamp;
+    const delta = timestamp - lastTimestamp;
+
+    if (delta > 1000 / fps) { 
       const n = animationGenerator.next();
-      if(n.done) animationGenerator = animation20241225_1(ctx,witdh, height, fps, 600);
+      if(n.done) animationGenerator = animation20241225_1(ctx, witdh, height, fps, dur);
       ctx.putImageData(n.value, 0, 0);
+      lastTimestamp = timestamp;
     }
-    f();
-    if(!isAnimating) clearInterval(interval);
-  }, 1000 / fps);
+    animationFrameId = requestAnimationFrame(animate);
+  };
+  requestAnimationFrame(animate);
 };
 
 const startAnimation2 = async () => {
-  const dur = 3
-  if (isAnimating) return; 
-  isAnimating = true;
+  if (animationFrameId) return;
+  const dur = 3;
   const ctx = canvasRef.value?.getContext('2d');
   if (!ctx) return;
-  let animationGenerator = animation20241225_2(ctx,witdh, height, fps, dur);
-  const interval = setInterval(() => {
-    const f = async () => {
+  let animationGenerator = animation20241225_2(ctx, witdh, height, fps, dur);
+  const animate = (timestamp: number) => {
+    if (!lastTimestamp) lastTimestamp = timestamp;
+    const delta = timestamp - lastTimestamp;
+
+    if (delta > 1000 / fps) { 
       const n = animationGenerator.next();
-      if(n.done) animationGenerator = animation20241225_2(ctx,witdh, height, fps, dur);
+      if(n.done) animationGenerator = animation20241225_2(ctx, witdh, height, fps, dur);
       ctx.putImageData(n.value, 0, 0);
+      lastTimestamp = timestamp;
     }
-    f();
-    if(!isAnimating) clearInterval(interval);
-  }, 1000 / fps);
-  
+    animationFrameId = requestAnimationFrame(animate);
+  };
+  requestAnimationFrame(animate);
 };
 
 
 // Stop Animation function
 const stopAnimation = () => {
-  isAnimating = false; // Set the state to stop the animation
+  animationFrameId !== null && cancelAnimationFrame(animationFrameId); // Stop the animation
+  animationFrameId = null;
 };
 </script>
 
