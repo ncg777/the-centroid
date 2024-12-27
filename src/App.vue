@@ -21,7 +21,7 @@ let lastTimestamp = 0;
 let animationFrameId: number | null = null; // To store the animation frame ID
 
 const startAnimation = async (generator: () => Generator<ImageData>) => {
-  if (animationFrameId) return;
+  stopAnimation();
   let animationGenerator = generator();
   const animate = (timestamp: number) => {
     if (!lastTimestamp) lastTimestamp = timestamp;
@@ -37,7 +37,7 @@ const startAnimation = async (generator: () => Generator<ImageData>) => {
     }
     animationFrameId = requestAnimationFrame(animate);
   };
-  requestAnimationFrame(animate);
+  animationFrameId = requestAnimationFrame(animate);
 };
 
 const startAnimation1 = () => startAnimation(() => animation20241225_1(canvasRef.value?.getContext('2d')!, witdh, height, fps, 600));
