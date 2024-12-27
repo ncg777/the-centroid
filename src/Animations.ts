@@ -32,6 +32,11 @@ export function* animation20241225_1(ctx: CanvasRenderingContext2D, width: numbe
               );    
       }
     }
+    ctx.resetTransform();
+    ctx.translate(width/2,height/2);
+    ctx.rotate(k*40.0*2*Math.PI/upper);
+    ctx.translate(-width/2,-height/2);
+
     yield ctx.getImageData(0, 0, width, height);
   }
 }
