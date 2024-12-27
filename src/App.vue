@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <canvas ref="canvasRef" width="500" height="500"></canvas>
+    <canvas ref="canvasRef" width="800" height="800"></canvas>
     <button @click="startAnimation1">Start Animation 1</button>
     <button @click="startAnimation2">Start Animation 2</button>
     <button @click="stopAnimation">Stop Animation</button>
@@ -9,8 +9,8 @@
 
 <script setup lang="ts">
 const fps = 30;
-const witdh=500;
-const height=500;
+const witdh=800;
+const height=800;
 
 
 import { ref } from 'vue';
