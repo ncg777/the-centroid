@@ -67,3 +67,32 @@ export function* animation20241225_2(ctx: CanvasRenderingContext2D, width: numbe
       yield ctx.getImageData(0, 0, width, height);
   }
 }
+
+export function* animation20241225_3(ctx: CanvasRenderingContext2D, width: number, height: number, fps: number, dur: number): Generator<ImageData> {
+  if (!ctx) return;
+  const upper = Math.floor(dur * fps);
+  
+  for (let k = 0; k < upper; k++) {
+      const t = k / upper;
+      ctx.clearRect(0,0,width,height);
+      drawColorField2D(ctx, 
+          (x: number, y: number) => {
+              const b = 2.0;
+              const th = Math.atan2(x, y);
+              const s = 0.5 + (th / Math.PI) * 0.5;
+              const r1 = Math.sqrt((Math.pow(x, 2.0) + Math.pow(y, 2.0)) / 2.0);
+              const r1p = ((Math.sin(t*2.0*Math.PI)))*r1;
+              const r2 = (t - b * s);
+              const p = 2.0 * Math.sin(2.0 * Math.PI * (1.0 * r2 + 1.0 * r1p));
+              
+              return `rgba(
+              ${Math.round(128 + Math.sin(p * 8.0 * Math.PI) * 127)}, 
+              ${Math.round(128 + Math.sin(Math.PI / 4 + p * 4.0 * Math.PI) * 127)}, 
+              ${Math.round(128 + Math.cos(p * 2.0 * Math.PI) * 127)}, 
+              ${0.5*(1+Math.tanh(30*(0.5-r1)))})`;
+          },
+          width, height);
+      
+      yield ctx.getImageData(0, 0, width, height);
+  }
+}
