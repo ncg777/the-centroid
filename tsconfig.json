@@ -1,7 +1,8 @@
 {
-  
-    "compilerOptions": {
-      "target": "ES2015", // or "ES2016", "ES2017", etc.
+  "compilerOptions": {
+      "target": "ES2016", // Keep this if you really need to target ES5
+      "module": "ESNext",
+      "downlevelIteration": true, // Enable downlevelIteration
       "lib": [
         "ES2015", // Ensure this is included
         "DOM"     // Include DOM for browser compatibility
