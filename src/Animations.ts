@@ -4,6 +4,7 @@ import drawColorField2D from "./drawColorField";
 import drawParametric2D from "./drawParametric";
 
 export function* animation20241225_1(ctx: CanvasRenderingContext2D, width: number, height: number, fps: number, dur: number): Generator<ImageData> {
+  if (!ctx) return;
   const upper = Math.floor(dur * fps);
   
   for (let k = 0; k < upper; k++) {
@@ -15,9 +16,6 @@ export function* animation20241225_1(ctx: CanvasRenderingContext2D, width: numbe
         const i = list[_i];
         for(let _j=0;_j<2;_j++) {
           const j = list[_j];
-          
-          // Draw Parametric curves
-          
           drawParametric2D(
               ctx,
               (t) => 0.5+j*0.35*Math.cos(j*Math.PI*0.125+i*normalized_time*40*Math.PI)*(0.5-0.5*Math.cos((4.0-(Math.abs(2.0-4.0*t)*2.0+2.0*(2.0+(1.0-Math.abs(1.0-2.0*normalized_time)))))*Math.PI)), 
@@ -31,15 +29,14 @@ export function* animation20241225_1(ctx: CanvasRenderingContext2D, width: numbe
               (t:number) => 0.1+0.1*Math.sin(42*Math.PI*t)*Math.sin(20*Math.PI*normalized_time),
               (t:number) => `rgba(${Math.round(128 - 127 * (j * Math.cos(Math.PI * (3.0 * t - i * normalized_time))))}, ${Math.round(128 + 127 * (j * Math.sin(Math.PI * (3.0 * t + i * normalized_time))))}, 128, 16)`,
               (t:number) => 0.00075+0.0007*Math.sin(Math.PI*2.0*t + Math.PI*Math.sin(80.0*Math.PI*normalized_time))
-              );
-          
-                
+              );    
       }
     }
     yield ctx.getImageData(0, 0, width, height);
   }
 }
 export function* animation20241225_2(ctx: CanvasRenderingContext2D, width: number, height: number, fps: number, dur: number): Generator<ImageData> {
+  if (!ctx) return;
   const upper = Math.floor(dur * fps);
   
   for (let k = 0; k < upper; k++) {
@@ -58,6 +55,6 @@ export function* animation20241225_2(ctx: CanvasRenderingContext2D, width: numbe
           },
           width, height);
       
-      yield ctx.getImageData(0, 0, width, height); // Return the frame as ImageData
+      yield ctx.getImageData(0, 0, width, height);
   }
 }
