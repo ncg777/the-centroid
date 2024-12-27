@@ -51,7 +51,11 @@ export function* animation20241225_2(ctx: CanvasRenderingContext2D, width: numbe
               const r2 = (t - b * s);
               const p = 2.0 * Math.sin(2.0 * Math.PI * (1.0 * r2 + 1.0 * r1));
               
-              return `rgba(${Math.round(128 + Math.sin(p * 8.0 * Math.PI) * 127)}, ${Math.round(128 + Math.sin(Math.PI / 4 + p * 4.0 * Math.PI) * 127)}, ${Math.round(128 + Math.cos(p * 2.0 * Math.PI) * 127)}, 255)`;
+              return `rgba(
+              ${Math.round(128 + Math.sin(p * 8.0 * Math.PI) * 127)}, 
+              ${Math.round(128 + Math.sin(Math.PI / 4 + p * 4.0 * Math.PI) * 127)}, 
+              ${Math.round(128 + Math.cos(p * 2.0 * Math.PI) * 127)}, 
+              ${Math.tanh(6*(0.5-r1))})`;
           },
           width, height);
       

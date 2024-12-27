@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <canvas ref="canvasRef" width="800" height="800"></canvas>
+    <canvas ref="canvasRef" width="256" height="256"></canvas>
     <button @click="startAnimation1">Start Animation 1</button>
     <button @click="startAnimation2">Start Animation 2</button>
     <button @click="stopAnimation">Stop Animation</button>
@@ -8,9 +8,9 @@
 </template>
 
 <script setup lang="ts">
-const fps = 30;
-const witdh=800;
-const height=800;
+const fps = 15;
+const witdh=256;
+const height=256;
 
 import { ref } from 'vue';
 import { animation20241225_1, animation20241225_2 } from './Animations';
@@ -39,7 +39,7 @@ const startAnimation = async (generator: () => Generator<ImageData>) => {
   requestAnimationFrame(animate);
 };
 
-const startAnimation1 = () => startAnimation(() => animation20241225_1(canvasRef.value?.getContext('2d')!, witdh, height, fps, 600));
+const startAnimation1 = () => startAnimation(() => animation20241225_1(canvasRef.value?.getContext('2d')!, witdh, height, fps, 200));
 const startAnimation2 = () => startAnimation(() => animation20241225_2(canvasRef.value?.getContext('2d')!, witdh, height, fps, 2));
 
 // Stop Animation function
