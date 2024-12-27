@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-const fps = 15;
+const fps = 24;
 const witdh=252;
 const height=252;
 
@@ -40,7 +40,7 @@ const startAnimation = async (generator: () => Generator<ImageData>) => {
 };
 
 const startAnimation1 = () => startAnimation(() => animation20241225_1(canvasRef.value?.getContext('2d')!, witdh, height, fps, 600));
-const startAnimation2 = () => startAnimation(() => animation20241225_2(canvasRef.value?.getContext('2d')!, witdh, height, fps, 2));
+const startAnimation2 = () => startAnimation(() => animation20241225_2(canvasRef.value?.getContext('2d')!, witdh, height, fps, 0.5));
 
 // Stop Animation function
 const stopAnimation = () => {
