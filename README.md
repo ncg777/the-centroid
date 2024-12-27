@@ -1,5 +1,5 @@
-# Vue 3 + TypeScript + Vite
+# Demo animation
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Translated from java with gpt.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+[https://ncg777.github.io/ts-anim777/](https://ncg777.github.io/ts-anim777/)
