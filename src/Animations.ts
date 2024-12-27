@@ -27,7 +27,7 @@ export class Animations {
     const colorFunction = (t: number, normalizedTime: number, j: number, i: number): string => {
       const r = Math.round(128.0 - 127.0 * (j * Math.cos(Math.PI * (3.0 * t - i * normalizedTime))));
       const g = Math.round(128.0 + 127.0 * (j * Math.sin(Math.PI * (3.0 * t + i * normalizedTime))));
-      return `rgba(${r}, ${g}, 128, 0.0625)`; // Alpha is 16 / 256
+      return `rgba(${r}, ${g}, 128, 16)`; // Alpha is 16 / 256
     };
 
     const widthFunction = (t: number, normalizedTime: number): number => {
@@ -38,7 +38,7 @@ export class Animations {
     }
     return () => {
       if (k >= upper) {
-        return null; // End of animation
+        k=0; // End of animation
       }
 
       const normalizedTime = k / upper;

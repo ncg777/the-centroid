@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-    <h1>Parametric Animation</h1>
     <ParametricCanvas
-      :width=500
-      :height=500
+      :width=800
+      :height=800
       :functions="parametricFunctions"
       :from="0" 
       :to="1"
       :translateX="() => 0"
       :translateY="() => 0"
-      :scaleX="() => 500"
-      :scaleY="() => 500"
+      :scaleX="() => 800"
+      :scaleY="() => 800"
     />
   </div>
 </template>

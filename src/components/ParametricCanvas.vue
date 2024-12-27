@@ -1,6 +1,6 @@
 <template>
     <canvas ref="canvas" :width="width" :height="height"></canvas>
-  </template>
+</template>
   
   <script lang="ts">
   import { defineComponent, ref, onMounted, watch, type PropType } from 'vue';
@@ -126,6 +126,6 @@
   
   <style scoped>
   canvas {
-    border: 1px solid #ccc;
+    border: 0;
   }
   </style>
