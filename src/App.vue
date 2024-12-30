@@ -40,7 +40,7 @@ const startAnimation = async (generator: () => Generator<ImageData>) => {
   animationFrameId = requestAnimationFrame(animate);
 };
 
-const startAnimation1 = () => startAnimation(() => animation20241225_1(canvasRef.value?.getContext('2d',{willReadFrequently:true})!, witdh, height, 2, 600));
+const startAnimation1 = () => startAnimation(() => animation20241225_1(canvasRef.value?.getContext('2d',{willReadFrequently:true})!, witdh, height, fps, 600));
 const startAnimation2 = () => startAnimation(() => animation20241225_2(canvasRef.value?.getContext('2d',{willReadFrequently:true})!, witdh, height, fps, 0.5));
 const startAnimation3 = () => startAnimation(() => animation20241225_3(canvasRef.value?.getContext('2d',{willReadFrequently:true})!, witdh, height, fps, 0.5));
 
