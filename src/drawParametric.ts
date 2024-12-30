@@ -56,7 +56,6 @@ export default function drawParametric2D(
   
         // For the clockwise side (from the center to x_cw, y_cw)
         for (let u = 0; u <= 1; u += invl) {
-             
             const interX = A_x + u * (x_cw - A_x);
             const interY = A_y + u * (y_cw - A_y);
             ctx.fillStyle = color(t, u);
