@@ -44,23 +44,26 @@ export default function drawParametric2D(
         const dy = y_ccw-A_y;
         const l = Math.sqrt(Math.pow(dx, 2.0)+Math.pow(dy, 2.0));
         const invl = 1.0/l;
+
+        let interX = 0;
+        let interY = 0;
+
         // For the counterclockwise side (from the center to x_ccw, y_ccw)
         for (let u = 0; u <= 1; u += invl) { 
-            const interX = A_x + u * (x_ccw - A_x);
-            const interY = A_y + u * (y_ccw - A_y);
             ctx.fillStyle = color(t, u);
+
+            interX = A_x + u * (x_ccw - A_x);
+            interY = A_y + u * (y_ccw - A_y);
+            
             ctx.beginPath();
-            ctx.ellipse(interX, interY, 1, 1, 0, 0, 2*Math.PI, true);
+            ctx.fillRect(interX, interY, 1, 1);
             ctx.fill();
-        }
-  
-        // For the clockwise side (from the center to x_cw, y_cw)
-        for (let u = 0; u <= 1; u += invl) {
-            const interX = A_x + u * (x_cw - A_x);
-            const interY = A_y + u * (y_cw - A_y);
-            ctx.fillStyle = color(t, u);
+
+            interX = A_x + u * (x_cw - A_x);
+            interY = A_y + u * (y_cw - A_y);
+            
             ctx.beginPath();
-            ctx.ellipse(interX, interY, 1, 1, 0, 0, 2*Math.PI, true);
+            ctx.fillRect(interX, interY, 1, 1);
             ctx.fill();
         }
     }
