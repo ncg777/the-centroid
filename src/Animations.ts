@@ -27,7 +27,7 @@ export function* animation20241225_1(ctx: CanvasRenderingContext2D, width: numbe
               (_:number) => width,
               (_:number) => height,
               (t:number) => 0.1+0.1*Math.sin(42*Math.PI*t)*Math.sin(20*Math.PI*normalized_time),
-              (t:number) => `rgba(${Math.round(128 - 127 * (j * Math.cos(Math.PI * (3.0 * t - i * normalized_time))))}, ${Math.round(128 + 127 * (j * Math.sin(Math.PI * (3.0 * t + i * normalized_time))))}, 128, 16)`,
+              (t:number,u:number) => `rgba(${Math.round(128 - 127 * (j * Math.cos(Math.PI * (3.0 * t - i * normalized_time))))}, ${Math.round(128 + 127 * (j * Math.sin(Math.PI * (3.0 * t + i * normalized_time))))}, 128, ${255.0*Math.pow(1.0-u,3.0)})`,
               (t:number) => 0.00075+0.0007*Math.sin(Math.PI*2.0*t + Math.PI*Math.sin(80.0*Math.PI*normalized_time))
               );    
       }
