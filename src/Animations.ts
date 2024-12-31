@@ -7,10 +7,9 @@ export function* animation20241225_3(ctxf: () => CanvasRenderingContext2D|null|u
   const upper = dur*fps;
   let k = 0;
   while(++k > 0) {
-      if(k>=upper) k=0;
       const t = k / (upper);
       if (!ctx) ctx = ctxf();
-      else {
+      if(ctx){
         drawColorField2D(ctx!, 
           (x: number, y: number) => {
               const b = 2.0;
@@ -29,7 +28,8 @@ export function* animation20241225_3(ctxf: () => CanvasRenderingContext2D|null|u
           },
           width, height);
       }
-      
       yield k;
+
+      if(k>=upper) k=0;
   }
 }
