@@ -21,8 +21,8 @@ export function* animation20241225_3(ctxf: () => CanvasRenderingContext2D|null|u
               const p = 2.0 * Math.sin(2.0 * Math.PI * (1.0 * r2 + 1.0 * r1p));
               const o = `rgba(
               ${Math.round(127*(1.0 + Math.sin(p * 8.0 * Math.PI)))}, 
-              ${0}, 
-              ${0}, 
+              ${Math.round(127*(1.0 + Math.sin(p * 8.0 * Math.PI)))}, 
+              ${Math.round(127*(1.0 + Math.sin(p * 8.0 * Math.PI)))}, 
               ${r1 < 0.7 ? 255 : 0})`;
               return o;
           },
