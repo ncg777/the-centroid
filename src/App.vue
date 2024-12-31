@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-  const fps = 30.0;
+  const fps = 12.0;
   const witdh=504;
   const height=504;
 
