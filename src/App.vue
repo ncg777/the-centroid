@@ -1,16 +1,16 @@
 <template>
-  <div id="app" :style="{margin:'auto',  'margin-top':'20vh'}">
+  <div id="app">
     <canvas ref="canvasRef" width="504px" height="504px"></canvas>
   </div>
 </template>
 
 <script setup lang="ts">
-  const fps = 15.0;
+  const fps = 30.0;
   const witdh=504;
   const height=504;
 
   import { ref } from 'vue';
-  import { animation20241225_3 } from './Animations';
+  import { animation20241225_3 } from './animations';
   const canvasRef = ref<HTMLCanvasElement | null>(null);
   let lastTimestamp = 0;
 

@@ -1,4 +1,4 @@
-// Animations.ts
+// animations.ts
 
 import drawColorField2D from "./drawColorField";
 

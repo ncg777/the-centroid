@@ -18,4 +18,4 @@
               ${Math.round(127*(1+Math.sin(N*8*Math.PI)))}, 
               0, 
               0, 
-              ${R<.7?255:0})`},t,s),yield f,f>=o&&(f=0)}}const Qo={id:"app",style:{margin:"auto","margin-top":"20vh"}},mn=15,ko=504,el=504,tl=mi({__name:"App",setup(e){const t=ti(null);let s=0;const n=async i=>{let o=i();const f=u=>{s||(s=u),u-s>1e3/mn&&(o.next(),s=u),requestAnimationFrame(f)};requestAnimationFrame(f)};return n(()=>Zo(()=>{var i;return(i=t.value)==null?void 0:i.getContext("2d")},ko,el,mn,1)),(i,o)=>(oo(),co("div",Qo,[Hs("canvas",{ref_key:"canvasRef",ref:t,width:"504px",height:"504px"},null,512)]))}}),sl=Jo(tl);sl.mount("#app");
+              ${R<.7?255:0})`},t,s),yield f,f>=o&&(f=0)}}const Qo={id:"app"},mn=30,ko=504,el=504,tl=mi({__name:"App",setup(e){const t=ti(null);let s=0;const n=async i=>{let o=i();const f=u=>{s||(s=u),u-s>1e3/mn&&(o.next(),s=u),requestAnimationFrame(f)};requestAnimationFrame(f)};return n(()=>Zo(()=>{var i;return(i=t.value)==null?void 0:i.getContext("2d")},ko,el,mn,1)),(i,o)=>(oo(),co("div",Qo,[Hs("canvas",{ref_key:"canvasRef",ref:t,width:"504px",height:"504px"},null,512)]))}}),sl=Jo(tl);sl.mount("#app");
