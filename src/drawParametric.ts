@@ -49,7 +49,7 @@ export default function drawParametric2D(
         let interY = 0;
 
         // For the counterclockwise side (from the center to x_ccw, y_ccw)
-        for (let u = 0; u <= 1; u += invl) { 
+        for (let u = 0; u < 1; u += invl) { 
             ctx.fillStyle = color(t, u);
 
             interX = A_x + u * (x_ccw - A_x);
