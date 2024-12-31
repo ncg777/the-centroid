@@ -29,7 +29,7 @@
     requestAnimationFrame(animate);
   };
 
-  const startAnimation = () => _startAnimation(() => animation20241225_3(() => canvasRef.value?.getContext('2d'), witdh, height, fps, 1.0));
+  const startAnimation = () => _startAnimation(() => animation20241225_3(() => canvasRef.value?.getContext('2d', {willReadFrequently:true}), witdh, height, fps, 0.5));
   
   startAnimation();
 </script>
