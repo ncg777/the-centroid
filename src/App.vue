@@ -1,13 +1,13 @@
 <template>
-  <div id="app">
-    <canvas ref="canvasRef" width="252" height="252"></canvas>
+  <div id="app" :style="{margin:'auto',  'margin-top':'20vh'}">
+    <canvas ref="canvasRef" width="504px" height="504px"></canvas>
   </div>
 </template>
 
 <script setup lang="ts">
-  const fps = 10.0;
-  const witdh=252;
-  const height=252;
+  const fps = 15.0;
+  const witdh=504;
+  const height=504;
 
   import { ref } from 'vue';
   import { animation20241225_3 } from './Animations';
@@ -30,7 +30,7 @@
     requestAnimationFrame(animate);
   };
 
-  const startAnimation = () => _startAnimation(() => animation20241225_3(() => canvasRef.value?.getContext('2d'), witdh, height, fps, 2.0));
+  const startAnimation = () => _startAnimation(() => animation20241225_3(() => canvasRef.value?.getContext('2d'), witdh, height, fps, 1.0));
   
   startAnimation();
 </script>

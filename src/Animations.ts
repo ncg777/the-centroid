@@ -20,10 +20,10 @@ export function* animation20241225_3(ctxf: () => CanvasRenderingContext2D|null|u
               const r2 = (t - b * s);
               const p = 2.0 * Math.sin(2.0 * Math.PI * (1.0 * r2 + 1.0 * r1p));
               const o = `rgba(
-              ${Math.round(128 + Math.sin(p * 8.0 * Math.PI) * 127)}, 
-              ${Math.round(128 + Math.sin(Math.PI / 4 + p * 4.0 * Math.PI) * 127)}, 
-              ${Math.round(128 + Math.cos(p * 2.0 * Math.PI) * 127)}, 
-              ${0.5*(1+Math.tanh(30*(0.5-r1)))})`;
+              ${Math.round(127*(1.0 + Math.sin(p * 8.0 * Math.PI)))}, 
+              ${0}, 
+              ${0}, 
+              ${r1 < 0.7 ? 255 : 0})`;
               return o;
           },
           width, height);
