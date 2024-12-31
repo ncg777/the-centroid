@@ -1,6 +1,6 @@
 {
-  "name": "ts-swirl",
-  "homepage": "https://ncg777.github.io/ts-swirl",
+  "name": "the-centroid",
+  "homepage": "https://ncg777.github.io/the-centroid",
   "version": "2024.12.31",
   "private": false,
   "type": "module",
@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/node": "^22.10.2",
     "immutable": "^5.0.3",
+    "the-centroid": "file:",
     "ts-anim777": "file:",
     "ts-swirl": "file:",
     "vue": "^3.5.13"
