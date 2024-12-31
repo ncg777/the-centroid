@@ -1,52 +1,38 @@
 <template>
   <div id="app">
-    <canvas ref="canvasRef" width="252" height="252" willReadFrequently="true"></canvas>
-    <button @click="startAnimation1">Animation 1</button>
-    <button @click="startAnimation2">Animation 2</button>
-    <button @click="stopAnimation">Stop Animation</button>
+    <canvas ref="canvasRef" width="252" height="252"></canvas>
   </div>
 </template>
 
 <script setup lang="ts">
-const fps = 24;
-const witdh=252;
-const height=252;
+  const fps = 30.0;
+  const witdh=252;
+  const height=252;
 
-import { ref } from 'vue';
-import { animation20241225_2, animation20241225_3 } from './Animations';
+  import { ref } from 'vue';
+  import { animation20241225_3 } from './Animations';
 
-const canvasRef = ref<HTMLCanvasElement | null>(null);
-let lastTimestamp = 0;
-let animationFrameId: number | null = null; // To store the animation frame ID
+  const canvasRef = ref<HTMLCanvasElement | null>(null);
+  let lastTimestamp = 0;
 
-const startAnimation = async (generator: () => Generator<ImageData>) => {
-  stopAnimation();
-  let animationGenerator = generator();
-  const animate = (timestamp: number) => {
-    if (!lastTimestamp) lastTimestamp = timestamp;
-    const delta = timestamp - lastTimestamp;
-
-    if (delta > 1000 / fps) { 
-      let n = animationGenerator.next();
-      if(n.done) {
-        animationGenerator = generator();
-        n = animationGenerator.next();
-      } 
-      lastTimestamp = timestamp;
-    }
-    animationFrameId = requestAnimationFrame(animate);
+  const _startAnimation = async (generator: () => Generator<number>) => {
+    let animationGenerator = generator();
+    const animate = (timestamp: number) => {
+      if (!lastTimestamp) lastTimestamp = timestamp;
+      const delta = timestamp - lastTimestamp;
+   
+      if (delta > (1000 / fps)) { 
+        animationGenerator.next();
+        lastTimestamp = timestamp;
+      }
+      requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
   };
-  animationFrameId = requestAnimationFrame(animate);
-};
 
-const startAnimation1 = () => startAnimation(() => animation20241225_2(canvasRef.value?.getContext('2d',{willReadFrequently:true})!, witdh, height, fps, 0.5));
-const startAnimation2 = () => startAnimation(() => animation20241225_3(canvasRef.value?.getContext('2d',{willReadFrequently:true})!, witdh, height, fps, 0.5));
-
-// Stop Animation function
-const stopAnimation = () => {
-  animationFrameId !== null && cancelAnimationFrame(animationFrameId);
-  animationFrameId = null;
-};
+  const startAnimation = () => _startAnimation(() => animation20241225_3(() => canvasRef.value?.getContext('2d'), witdh, height, fps, 2.0));
+  
+  startAnimation();
 </script>
 
 <style>
