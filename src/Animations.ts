@@ -13,7 +13,7 @@ export function* animation20241225_3(ctxf: () => CanvasRenderingContext2D|null|u
         drawColorField2D(ctx!, 
           (x: number, y: number) => {
               const b = 2.0;
-              const th = Math.atan2(x, y);
+              const th = Math.atan2(y, x);
               const s = 0.5 + (th / Math.PI) * 0.5;
               const r1 = Math.sqrt((Math.pow(x, 2.0) + Math.pow(y, 2.0)) / 2.0);
               const r1p = ((Math.sin(t*2.0*Math.PI)))*r1;
